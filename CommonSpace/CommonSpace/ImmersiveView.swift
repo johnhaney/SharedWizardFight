@@ -39,6 +39,17 @@ struct ImmersiveView: View {
                 await dismissImmersiveSpace()
                 openWindow(id: "error")
             }
+        }.task{
+            var testing_decoding = false
+            if testing_decoding{
+                if testing_decoding{
+                    for second in 1...1000 {
+                        await Task.sleep(UInt64(100_000_000)) // Wait for 1 sec
+                        let (a,b) = fireballModel.encode()
+                        fireballModel.decode(state: a, trans_matrix: b)
+                    }
+                }
+            }
         }
         .task {
             await model.processUpdates()

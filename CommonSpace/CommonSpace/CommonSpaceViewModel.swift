@@ -29,7 +29,7 @@ class CommonSpaceViewModel: ARUnderstandingModel {
     var root: Entity = Entity()
     var fireballModel = FireViewModel()
     
-    private var fireState: FireState = .none
+    private var fireState: FireState = .readyForFire(nil)
     
     var tables: Set<UUID> = Set()
     var seats: Set<UUID> = Set()
@@ -133,7 +133,7 @@ class CommonSpaceViewModel: ARUnderstandingModel {
                 }
             case .fireThrown(let expirationTime):
                 fire = false
-                // throwing the fire, check for timeout
+                // thrown the fire, check for timeout
                 if Date().timeIntervalSince(expirationTime) >= 0 {
                     fireState = .none
                     fireballModel.myball.transform.rotation = .zero
