@@ -49,9 +49,6 @@ struct ContentView: View {
                 }
             }
         }
-        .gesture(TapGesture().targetedToAnyEntity().onEnded { _ in
-            enlarge.toggle()
-        })
         .toolbar {
             ToolbarItemGroup(placement: .bottomOrnament) {
                 VStack (spacing: 12) {

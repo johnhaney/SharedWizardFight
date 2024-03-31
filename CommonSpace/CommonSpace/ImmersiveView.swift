@@ -9,15 +9,24 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
+@MainActor
 struct ImmersiveView: View {
     @Environment(CommonSpaceViewModel.self) var model
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     @Environment(\.openWindow) var openWindow
-    @State var worldAnchor: Entity = AnchorEntity(.image(group: "CardDeck20", name: "IMG_4107 2"), trackingMode: .once)
+    
+    @Binding var fireballModel:FireViewModel
+    
     var body: some View {
         RealityView { content in
             content.add(model.setupContentEntity())
+            fireballModel.root = model.homeEntity
+            model.homeEntity.addChild(fireballModel.myball)
+            model.homeEntity.addChild(fireballModel.yourball)
         }
+        .gesture(TapGesture().targetedToAnyEntity().onEnded { tap in
+            model.collect(tap.entity)
+        })
         .task {
             do {
                 if model.dataProvidersAreSupported && model.isReadyToRun {
@@ -44,8 +53,4 @@ struct ImmersiveView: View {
             openWindow(id: "error")
         }
     }
-}
-
-#Preview(immersionStyle: .mixed) {
-    ImmersiveView()
 }

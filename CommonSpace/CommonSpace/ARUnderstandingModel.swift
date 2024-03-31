@@ -16,7 +16,8 @@ class ARUnderstandingModel {
     var errorState = false
     
     var contentEntity = Entity()
-    
+    var homeEntity = Entity()
+
     init(providers: [ARProvider]) {
         self.providers = providers
     }
@@ -26,6 +27,7 @@ class ARUnderstandingModel {
     }
     
     func setupContentEntity() -> Entity {
+        contentEntity.addChild(homeEntity)
         return contentEntity
     }
     
@@ -41,7 +43,9 @@ class ARUnderstandingModel {
         for provider in providers {
             if case .meshes = provider {
             } else {
-                await provider.processUpdates(model: self)
+                Task.detached {
+                    await provider.processUpdates(model: self)
+                }
             }
         }
     }
@@ -75,7 +79,18 @@ class ARUnderstandingModel {
         }
     }
     
-    func processMeshUpdates() async {}
+    func processMeshUpdates(_ mesh: SceneReconstructionProvider) async {
+        for await update in mesh.anchorUpdates {
+            await self.update(update.anchor)
+        }
+    }
+    
+    func processHandUpdates(_ handTracking: HandTrackingProvider) async {
+        for await update in handTracking.anchorUpdates {
+            await self.update(update.anchor)
+        }
+    }
+    
     func processImageUpdates(_ imageTracking: ImageTrackingProvider) async {
         for await update in imageTracking.anchorUpdates {
             await self.update(update.anchor)
@@ -88,8 +103,17 @@ class ARUnderstandingModel {
         }
     }
     
+    func processWorldUpdates(_ worldTracking: WorldTrackingProvider) async {
+        for await update in worldTracking.anchorUpdates {
+            await self.update(update.anchor)
+        }
+    }
+    
+    func update(_ anchor: MeshAnchor) async {}
+    func update(_ anchor: HandAnchor) async {}
     func update(_ anchor: ImageAnchor) async {}
     func update(_ anchor: PlaneAnchor) async {}
+    func update(_ anchor: WorldAnchor) async {}
 }
 
 @MainActor
@@ -148,16 +172,16 @@ enum ARProvider {
     @MainActor
     func processUpdates(model: ARUnderstandingModel) async {
         switch self {
-        case .hands(_):
-            break
-        case .meshes(_):
-            await model.processMeshUpdates()
+        case .hands(let handTracking):
+            await model.processHandUpdates(handTracking)
+        case .meshes(let mesh):
+            await model.processMeshUpdates(mesh)
         case .planes(let provider):
             await model.processPlaneUpdates(provider)
         case .image(let provider):
             await model.processImageUpdates(provider)
-        case .world(_):
-            break
+        case .world(let world):
+            await model.processWorldUpdates(world)
         }
     }
 }

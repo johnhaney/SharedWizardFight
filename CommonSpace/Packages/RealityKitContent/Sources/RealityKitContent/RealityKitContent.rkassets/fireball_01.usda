@@ -1,0 +1,138 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Sphere/DefaultMaterial>
+        double radius = 0.1
+
+        def Material "DefaultMaterial"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-115.25, 86.5)
+                        float2 sizeInSubgraph = (203.5, 53)
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Sphere/DefaultMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (126.25, 109.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+            def Shader "DefaultSurfaceShader" (
+                active = true
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9804083, 1, 0.98681134) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:diffuseColor.connect = </Root/Sphere/DefaultMaterial/diffuseColor.outputs:rgb>
+                color3f inputs:emissiveColor = (1, 0.76905954, 0.5747332) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:ior = 1
+                float inputs:metallic = 0.2
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+
+            def Shader "diffuseColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../fireball/images/fireball_01.png@
+                float2 inputs:st.connect = </Root/Sphere/DefaultMaterial/diffuseColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+
+            def Shader "PreviewSurface" (
+                active = false
+            )
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+            }
+        }
+    }
+
+    def Xform "ParticleEmitter" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                int64 burstCount = 150
+                double emissionDurationVariation = 0.5
+                token emitterShape = "Plane"
+                bool isLocal = 1
+                bool spawnInheritParentColor = 0
+                float spawnSpreadFactor = 0.0052359877
+                float spawnSpreadFactorVariation = 0.0017453292
+                double warmupDuration = 0
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, 0, 0)
+                    float axisVariation = 90
+                    token billboardMode = "Free"
+                    float birthRate = 200
+                    int64 columnCount = 105
+                    float dampingFactor = 0
+                    float4 endColorA = (0, 0, 0, 1)
+                    float4 endColorB = (1, 1, 1, 1)
+                    float frameRate = 30
+                    bool isAnimated = 1
+                    bool isLightingEnabled = 1
+                    float particleAngleVariation = 1.5707964
+                    float particleAngularVelocity = 0
+                    float particleAngularVelocityVariation = 1
+                    asset particleImage = @../fireball/motion/particle_flame_03.png@
+                    float particleSize = 0.07
+                    int64 rowCount = 1
+                    float spreadingAngle = 0.25
+                    float4 startColorA = (1, 0.29358652, 0, 1)
+                    float4 startColorB = (1, 1, 1, 1)
+                    float stretchFactor = 1
+                    bool useEndColor = 1
+                    bool useEndColorRange = 1
+                    bool useStartColorRange = 1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                }
+            }
+        }
+    }
+}
+

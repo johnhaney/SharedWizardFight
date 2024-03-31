@@ -13,9 +13,11 @@ let logger = Logger(subsystem: "com.lextech.CommonSpaceApp", category: "general"
 @main
 struct CommonSpaceApp: App {
     @State private var commonModel: CommonSpaceViewModel
-    
+    @State var fireballModel = FireViewModel()
+
     init() {
         commonModel = CommonSpaceViewModel()
+        commonModel.fireballModel = fireballModel
     }
 
     var body: some Scene {
@@ -25,7 +27,7 @@ struct CommonSpaceApp: App {
         }.windowStyle(.volumetric)
 
         ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
+            ImmersiveView(fireballModel: $fireballModel)
                 .environment(commonModel)
         }
     }

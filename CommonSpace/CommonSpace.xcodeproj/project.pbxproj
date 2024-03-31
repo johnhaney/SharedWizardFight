@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		227642CC2BB91B9D00E2B034 /* FireballViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227642CB2BB91B9D00E2B034 /* FireballViewModel.swift */; };
+		227642CE2BB91BB100E2B034 /* HandTrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227642CD2BB91BB100E2B034 /* HandTrackModel.swift */; };
+		2276431E2BB96F6700E2B034 /* EasterEgg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276431D2BB96F6700E2B034 /* EasterEgg.swift */; };
 		227D11272BB8A324000FCBE4 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 227D11262BB8A324000FCBE4 /* RealityKitContent */; };
 		227D11292BB8A324000FCBE4 /* CommonSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D11282BB8A324000FCBE4 /* CommonSpaceApp.swift */; };
 		227D112B2BB8A324000FCBE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D112A2BB8A324000FCBE4 /* ContentView.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		227642CB2BB91B9D00E2B034 /* FireballViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireballViewModel.swift; sourceTree = "<group>"; };
+		227642CD2BB91BB100E2B034 /* HandTrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackModel.swift; sourceTree = "<group>"; };
+		2276431D2BB96F6700E2B034 /* EasterEgg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasterEgg.swift; sourceTree = "<group>"; };
 		227D11212BB8A324000FCBE4 /* CommonSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommonSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		227D11252BB8A324000FCBE4 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		227D11282BB8A324000FCBE4 /* CommonSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSpaceApp.swift; sourceTree = "<group>"; };
@@ -63,8 +69,11 @@
 			isa = PBXGroup;
 			children = (
 				227D11282BB8A324000FCBE4 /* CommonSpaceApp.swift */,
+				227642CB2BB91B9D00E2B034 /* FireballViewModel.swift */,
+				227642CD2BB91BB100E2B034 /* HandTrackModel.swift */,
 				227D112A2BB8A324000FCBE4 /* ContentView.swift */,
 				227D113B2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift */,
+				2276431D2BB96F6700E2B034 /* EasterEgg.swift */,
 				227D11392BB8A834000FCBE4 /* ARUnderstandingModel.swift */,
 				227D112C2BB8A324000FCBE4 /* ImmersiveView.swift */,
 				227D112E2BB8A325000FCBE4 /* Assets.xcassets */,
@@ -164,8 +173,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				227D112B2BB8A324000FCBE4 /* ContentView.swift in Sources */,
+				2276431E2BB96F6700E2B034 /* EasterEgg.swift in Sources */,
+				227642CE2BB91BB100E2B034 /* HandTrackModel.swift in Sources */,
 				227D11292BB8A324000FCBE4 /* CommonSpaceApp.swift in Sources */,
 				227D112D2BB8A324000FCBE4 /* ImmersiveView.swift in Sources */,
+				227642CC2BB91B9D00E2B034 /* FireballViewModel.swift in Sources */,
 				227D113A2BB8A834000FCBE4 /* ARUnderstandingModel.swift in Sources */,
 				227D113C2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift in Sources */,
 			);
