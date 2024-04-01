@@ -1,0 +1,195 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+)
+{
+    reorder nameChildren = ["fireball_07", "Sphere", "ParticleEmitter", "AudioMixGroups", "fire_fireball_m4a", "SpatialAudio"]
+    rel material:binding = </Root/Sphere/DefaultMaterial> (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Sphere/DefaultMaterial>
+        double radius = 0.1
+
+        def Material "DefaultMaterial"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-115.25, 86.5)
+                        float2 sizeInSubgraph = (203.5, 53)
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Sphere/DefaultMaterial/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (126.25, 109.5)
+            float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+            def Shader "DefaultSurfaceShader" (
+                active = true
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9804083, 1, 0.98681134) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:diffuseColor.connect = </Root/Sphere/DefaultMaterial/diffuseColor.outputs:rgb>
+                color3f inputs:emissiveColor = (1, 0.76905954, 0.5747332) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:ior = 1
+                float inputs:metallic = 0.2
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+
+            def Shader "diffuseColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @../fireball/images/fireball_01.png@
+                float2 inputs:st.connect = </Root/Sphere/DefaultMaterial/diffuseColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+
+            def Shader "PreviewSurface" (
+                active = false
+            )
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                float2 ui:nodegraph:node:size = (148.5, 199)
+            }
+        }
+    }
+
+    def "fireball_07" (
+        active = true
+        references = @fireball_07.usdz@
+    )
+    {
+        float3 xformOp:scale = (0.2, 0.2, 0.2)
+        float3 xformOp:translate = (0, -0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            reorder nameChildren = ["fireball_inner_06_obj", "fireball_outter_06_obj"]
+        }
+    }
+
+    def Xform "ParticleEmitter" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                int64 burstCount = 150
+                double emissionDurationVariation = 0.5
+                token emitterShape = "Plane"
+                bool isLocal = 1
+                bool spawnInheritParentColor = 0
+                float spawnSpreadFactor = 0.0052359877
+                float spawnSpreadFactorVariation = 0.0017453292
+                double warmupDuration = 0
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, 0, 0)
+                    float axisVariation = 90
+                    token billboardMode = "Free"
+                    float birthRate = 200
+                    int64 columnCount = 105
+                    float dampingFactor = 0
+                    float4 endColorA = (0, 0, 0, 1)
+                    float4 endColorB = (1, 1, 1, 1)
+                    float frameRate = 30
+                    bool isAnimated = 1
+                    bool isLightingEnabled = 1
+                    float particleAngleVariation = 1.5707964
+                    float particleAngularVelocity = 0
+                    float particleAngularVelocityVariation = 1
+                    asset particleImage = @particle_flame_03.png@
+                    float particleSize = 0.07
+                    int64 rowCount = 1
+                    float spreadingAngle = 0.25
+                    float4 startColorA = (1, 0.29358652, 0, 1)
+                    float4 startColorB = (1, 1, 1, 1)
+                    float stretchFactor = 1
+                    bool useEndColor = 1
+                    bool useEndColorRange = 1
+                    bool useStartColorRange = 1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "AudioMixGroups"
+    {
+        uniform token info:id = "RealityKit.AudioMixGroups"
+
+        def RealityKitAudioMixGroup "MixGroup"
+        {
+            float gain = 0
+            bool mute = 0
+            float speed = 1
+        }
+    }
+
+    def Xform "SpatialAudio" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["fire_fireball_m4a", "SpatialAudio"]
+        rel material:binding = </Root/Sphere/DefaultMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+
+        def RealityKitComponent "SpatialAudio"
+        {
+            uniform token info:id = "RealityKit.SpatialAudio"
+        }
+
+        def RealityKitAudioFile "fire_fireball_m4a"
+        {
+            uniform token calibrationMode = "none"
+            uniform asset file = @fire-fireball.m4a@
+            uniform token normalization = "dynamic"
+            uniform bool shouldLoop = 1
+        }
+    }
+}
+

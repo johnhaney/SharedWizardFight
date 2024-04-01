@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_sharedwizard._tcp</string>
+		<string>_sharedwizard._udp</string>
+	</array>
 	<key>NSHandsTrackingUsageDescription</key>
 	<string>This app uses your hands to set up the game environment</string>
 	<key>NSWorldSensingUsageDescription</key>

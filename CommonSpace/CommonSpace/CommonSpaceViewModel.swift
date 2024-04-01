@@ -29,7 +29,7 @@ class CommonSpaceViewModel: ARUnderstandingModel {
     var root: Entity = Entity()
     var fireballModel = FireViewModel()
     
-    private var fireState: FireState = .readyForFire(nil)
+    private(set) var fireState: FireState = .readyForFire(nil)
     
     var tables: Set<UUID> = Set()
     var seats: Set<UUID> = Set()
@@ -39,7 +39,6 @@ class CommonSpaceViewModel: ARUnderstandingModel {
         case readyForFire(Entity?)
         case snapReady(Entity?, Date)
         case fireActive
-        case fireLoaded(Date)
         case fireThrown(Date)
     }
 
@@ -49,7 +48,7 @@ class CommonSpaceViewModel: ARUnderstandingModel {
     
     func collect(_ entity: Entity) -> Bool {
         if case .none = fireState {
-            entity.components.set(OpacityComponent(opacity: 0))
+//            entity.components.set(OpacityComponent(opacity: 0))
             fireState = .readyForFire(entity)
             return true
         }
@@ -65,7 +64,6 @@ class CommonSpaceViewModel: ARUnderstandingModel {
             var item: Entity? = nil
             switch fireState {
             case .none:
-                fireballModel.myball.components.set(OpacityComponent(opacity: 0))
                 fire = false
             case .readyForFire(let collectedItem):
                 item = collectedItem
@@ -73,13 +71,13 @@ class CommonSpaceViewModel: ARUnderstandingModel {
                     print("ready for snap")
                     fireState = .snapReady(collectedItem, Date())
                 }
-                fireballModel.myball.components.set(OpacityComponent(opacity: 0))
+//                fireballModel.myball.components.set(OpacityComponent(opacity: 0))
                 fire = false
             case .snapReady(let collectedItem, let lastPresnap):
                 if hand.isAfterSnap() {
                     if Date().timeIntervalSince(lastPresnap) < 0.1 {
                         print("SNAP!")
-                        fireballModel.myball.components.remove(OpacityComponent.self)
+//                        fireballModel.myball.components.remove(OpacityComponent.self)
                         fireState = .fireActive
                         fire = true
                         collectedItem?.removeFromParent()
@@ -102,32 +100,15 @@ class CommonSpaceViewModel: ARUnderstandingModel {
                 if let lh = anchors.leftHand,
                    let pointing = lh.isPointing() {
                     print("FIRE!!")
+                    print("fireballModel: \(fireballModel)")
+                    print("fireballModel.myball: \(fireballModel.myball)")
+                    print("fireballModel.myball.transform: \(fireballModel.myball.transform)")
                     fire = false
                     var transform = fireballModel.myball.transform
                     transform.translation += normalize(pointing) * 100
-                    fireballModel.myball.move(to: transform, relativeTo: nil, duration: 6, timingFunction: .linear)
-                    fireState = .fireThrown(Date(timeIntervalSinceNow: 6))
-                } else {
-                    fire = true
-                }
-            case .fireLoaded(let lastLoaded):
-                if let yComponent = AffineTransform3D(hand.originFromAnchorTransform)?.rotation?.axis.y {
-                    if abs(yComponent) < 0.1 {
-                        if Date().timeIntervalSince(lastLoaded) < 0.1 {
-                            print("FIRE!!")
-                            fire = false
-                            fireState = .fireThrown(Date(timeIntervalSinceNow: 6))
-                        } else {
-                            print("too slow...")
-                            fire = true
-                        }
-                    } else if yComponent > 0.8 {
-                        fire = true
-                        fireState = .fireLoaded(Date())
-                    } else {
-                        fire = true
-                    }
-                    print("hmm \(yComponent)")
+                    fireballModel.myball.move(to: transform, relativeTo: root, duration: 4, timingFunction: .easeIn)
+                    fireballModel.myballgoingto = transform.translation
+                    fireState = .fireThrown(Date(timeIntervalSinceNow: 4))
                 } else {
                     fire = true
                 }
@@ -135,19 +116,19 @@ class CommonSpaceViewModel: ARUnderstandingModel {
                 fire = false
                 // thrown the fire, check for timeout
                 if Date().timeIntervalSince(expirationTime) >= 0 {
-                    fireState = .none
-                    fireballModel.myball.transform.rotation = .zero
+                    fireState = .readyForFire(nil)
                 }
                 // Rotate the smoke effect
-                fireballModel.myball.transform.rotation = .init(angle: .pi*0.4, axis: .init(x: 1, y: 0, z: 0))
+//                fireballModel.myball.transform.rotation = .init(angle: .pi*0.4, axis: .init(x: 1, y: 0, z: 0))
             }
             
             if fire {
                 let indextip = hand.handSkeleton!.joint(.indexFingerTip)
                 let indextiploc = hand.getlocation(jointloc: hand.originFromAnchorTransform, parentloc: indextip.anchorFromJointTransform)
-                fireballModel.myball.transform.translation = root.convert(position: indextiploc.xyz, from: nil) + simd_float3(x: 0, y: 0.07, z: 0)
+                fireballModel.myball.transform.translation =  indextiploc.xyz
+//                fireballModel.myball.transform.translation = root.convert(position: indextiploc.xyz, from: nil) + simd_float3(x: 0, y: 0.07, z: 0)
             } else if let item {
-                item.components.remove(OpacityComponent.self)
+//                item.components.remove(OpacityComponent.self)
                 let indextip = hand.handSkeleton!.joint(.indexFingerTip)
                 let indextiploc = hand.getlocation(jointloc: hand.originFromAnchorTransform, parentloc: indextip.anchorFromJointTransform)
                 var itemTransform = item.transform

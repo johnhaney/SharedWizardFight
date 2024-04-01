@@ -18,6 +18,21 @@
 		227D11322BB8A325000FCBE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227D11312BB8A325000FCBE4 /* Preview Assets.xcassets */; };
 		227D113A2BB8A834000FCBE4 /* ARUnderstandingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D11392BB8A834000FCBE4 /* ARUnderstandingModel.swift */; };
 		227D113C2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D113B2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift */; };
+		2282DDB92BB9D6EB00521E59 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDB82BB9D6EB00521E59 /* DebugView.swift */; };
+		2282DDE82BB9D84900521E59 /* Data+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDD42BB9D84900521E59 /* Data+ext.swift */; };
+		2282DDE92BB9D84900521E59 /* MCSessionState+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDD52BB9D84900521E59 /* MCSessionState+ext.swift */; };
+		2282DDEA2BB9D84900521E59 /* PeersC+Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDD72BB9D84900521E59 /* PeersC+Advertiser.swift */; };
+		2282DDEB2BB9D84900521E59 /* PeersC+Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDD82BB9D84900521E59 /* PeersC+Browser.swift */; };
+		2282DDEC2BB9D84900521E59 /* PeersC+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDD92BB9D84900521E59 /* PeersC+Session.swift */; };
+		2282DDED2BB9D84900521E59 /* PeersC+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDDA2BB9D84900521E59 /* PeersC+Stream.swift */; };
+		2282DDEE2BB9D84900521E59 /* PeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDDB2BB9D84900521E59 /* PeerService.swift */; };
+		2282DDEF2BB9D84900521E59 /* PeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDDD2BB9D84900521E59 /* PeersController.swift */; };
+		2282DDF02BB9D84900521E59 /* PeerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDDF2BB9D84900521E59 /* PeerInfo.swift */; };
+		2282DDF12BB9D84900521E59 /* PeersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDE02BB9D84900521E59 /* PeersView.swift */; };
+		2282DDF22BB9D84900521E59 /* PeersVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDE12BB9D84900521E59 /* PeersVm.swift */; };
+		2282DDF32BB9D84900521E59 /* PSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDE32BB9D84900521E59 /* PSNetworking.swift */; };
+		2282DDF42BB9D84900521E59 /* SendableCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDE52BB9D84900521E59 /* SendableCircle.swift */; };
+		2282DDF52BB9D84900521E59 /* SendablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2282DDE62BB9D84900521E59 /* SendablePlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +49,21 @@
 		227D11332BB8A325000FCBE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227D11392BB8A834000FCBE4 /* ARUnderstandingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARUnderstandingModel.swift; sourceTree = "<group>"; };
 		227D113B2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSpaceViewModel.swift; sourceTree = "<group>"; };
+		2282DDB82BB9D6EB00521E59 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		2282DDD42BB9D84900521E59 /* Data+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+ext.swift"; sourceTree = "<group>"; };
+		2282DDD52BB9D84900521E59 /* MCSessionState+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCSessionState+ext.swift"; sourceTree = "<group>"; };
+		2282DDD72BB9D84900521E59 /* PeersC+Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PeersC+Advertiser.swift"; sourceTree = "<group>"; };
+		2282DDD82BB9D84900521E59 /* PeersC+Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PeersC+Browser.swift"; sourceTree = "<group>"; };
+		2282DDD92BB9D84900521E59 /* PeersC+Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PeersC+Session.swift"; sourceTree = "<group>"; };
+		2282DDDA2BB9D84900521E59 /* PeersC+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PeersC+Stream.swift"; sourceTree = "<group>"; };
+		2282DDDB2BB9D84900521E59 /* PeerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerService.swift; sourceTree = "<group>"; };
+		2282DDDD2BB9D84900521E59 /* PeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersController.swift; sourceTree = "<group>"; };
+		2282DDDF2BB9D84900521E59 /* PeerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerInfo.swift; sourceTree = "<group>"; };
+		2282DDE02BB9D84900521E59 /* PeersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersView.swift; sourceTree = "<group>"; };
+		2282DDE12BB9D84900521E59 /* PeersVm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeersVm.swift; sourceTree = "<group>"; };
+		2282DDE32BB9D84900521E59 /* PSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSNetworking.swift; sourceTree = "<group>"; };
+		2282DDE52BB9D84900521E59 /* SendableCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendableCircle.swift; sourceTree = "<group>"; };
+		2282DDE62BB9D84900521E59 /* SendablePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendablePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +98,13 @@
 		227D11232BB8A324000FCBE4 /* CommonSpace */ = {
 			isa = PBXGroup;
 			children = (
+				2282DDE42BB9D84900521E59 /* Networking */,
+				2282DDE72BB9D84900521E59 /* Sendables */,
 				227D11282BB8A324000FCBE4 /* CommonSpaceApp.swift */,
 				227642CB2BB91B9D00E2B034 /* FireballViewModel.swift */,
 				227642CD2BB91BB100E2B034 /* HandTrackModel.swift */,
 				227D112A2BB8A324000FCBE4 /* ContentView.swift */,
+				2282DDB82BB9D6EB00521E59 /* DebugView.swift */,
 				227D113B2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift */,
 				2276431D2BB96F6700E2B034 /* EasterEgg.swift */,
 				227D11392BB8A834000FCBE4 /* ARUnderstandingModel.swift */,
@@ -97,6 +130,66 @@
 				227D11312BB8A325000FCBE4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2282DDD62BB9D84900521E59 /* MuExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDD42BB9D84900521E59 /* Data+ext.swift */,
+				2282DDD52BB9D84900521E59 /* MCSessionState+ext.swift */,
+			);
+			path = MuExtensions;
+			sourceTree = "<group>";
+		};
+		2282DDDC2BB9D84900521E59 /* PeersControllerService */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDD62BB9D84900521E59 /* MuExtensions */,
+				2282DDD72BB9D84900521E59 /* PeersC+Advertiser.swift */,
+				2282DDD82BB9D84900521E59 /* PeersC+Browser.swift */,
+				2282DDD92BB9D84900521E59 /* PeersC+Session.swift */,
+				2282DDDA2BB9D84900521E59 /* PeersC+Stream.swift */,
+				2282DDDB2BB9D84900521E59 /* PeerService.swift */,
+			);
+			path = PeersControllerService;
+			sourceTree = "<group>";
+		};
+		2282DDDE2BB9D84900521E59 /* MuPeer */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDDC2BB9D84900521E59 /* PeersControllerService */,
+				2282DDDD2BB9D84900521E59 /* PeersController.swift */,
+			);
+			path = MuPeer;
+			sourceTree = "<group>";
+		};
+		2282DDE22BB9D84900521E59 /* PeersView */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDDF2BB9D84900521E59 /* PeerInfo.swift */,
+				2282DDE02BB9D84900521E59 /* PeersView.swift */,
+				2282DDE12BB9D84900521E59 /* PeersVm.swift */,
+			);
+			path = PeersView;
+			sourceTree = "<group>";
+		};
+		2282DDE42BB9D84900521E59 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDDE2BB9D84900521E59 /* MuPeer */,
+				2282DDE22BB9D84900521E59 /* PeersView */,
+				2282DDE32BB9D84900521E59 /* PSNetworking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2282DDE72BB9D84900521E59 /* Sendables */ = {
+			isa = PBXGroup;
+			children = (
+				2282DDE52BB9D84900521E59 /* SendableCircle.swift */,
+				2282DDE62BB9D84900521E59 /* SendablePlayer.swift */,
+			);
+			path = Sendables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,13 +266,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				227D112B2BB8A324000FCBE4 /* ContentView.swift in Sources */,
+				2282DDE82BB9D84900521E59 /* Data+ext.swift in Sources */,
+				2282DDEF2BB9D84900521E59 /* PeersController.swift in Sources */,
 				2276431E2BB96F6700E2B034 /* EasterEgg.swift in Sources */,
 				227642CE2BB91BB100E2B034 /* HandTrackModel.swift in Sources */,
 				227D11292BB8A324000FCBE4 /* CommonSpaceApp.swift in Sources */,
 				227D112D2BB8A324000FCBE4 /* ImmersiveView.swift in Sources */,
+				2282DDF52BB9D84900521E59 /* SendablePlayer.swift in Sources */,
+				2282DDEB2BB9D84900521E59 /* PeersC+Browser.swift in Sources */,
+				2282DDE92BB9D84900521E59 /* MCSessionState+ext.swift in Sources */,
 				227642CC2BB91B9D00E2B034 /* FireballViewModel.swift in Sources */,
+				2282DDEE2BB9D84900521E59 /* PeerService.swift in Sources */,
+				2282DDEA2BB9D84900521E59 /* PeersC+Advertiser.swift in Sources */,
+				2282DDEC2BB9D84900521E59 /* PeersC+Session.swift in Sources */,
+				2282DDF02BB9D84900521E59 /* PeerInfo.swift in Sources */,
+				2282DDF22BB9D84900521E59 /* PeersVm.swift in Sources */,
+				2282DDED2BB9D84900521E59 /* PeersC+Stream.swift in Sources */,
+				2282DDF12BB9D84900521E59 /* PeersView.swift in Sources */,
 				227D113A2BB8A834000FCBE4 /* ARUnderstandingModel.swift in Sources */,
+				2282DDF32BB9D84900521E59 /* PSNetworking.swift in Sources */,
 				227D113C2BB8A8F8000FCBE4 /* CommonSpaceViewModel.swift in Sources */,
+				2282DDB92BB9D6EB00521E59 /* DebugView.swift in Sources */,
+				2282DDF42BB9D84900521E59 /* SendableCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,10 +421,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CommonSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = CATM9F8TCA;
+				DEVELOPMENT_TEAM = FXU8ZFP3YV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This application will use local networking to discover nearby devices.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,10 +448,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CommonSpace/Preview Content\"";
-				DEVELOPMENT_TEAM = CATM9F8TCA;
+				DEVELOPMENT_TEAM = FXU8ZFP3YV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This application will use local networking to discover nearby devices.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
